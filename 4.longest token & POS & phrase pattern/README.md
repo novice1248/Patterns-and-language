@@ -1,0 +1,1 @@
+4.longest token & POS & phrase pattern
