@@ -1,17 +1,16 @@
 import collections
-from itertools import combinations
-import os # osモジュールはパスの結合などに引き続き便利です
+import os
 
 def find_longest_matching_patterns(file_paths, min_pattern_length=2):
     """
-    複数のファイルから最長一致する文章パターンを、その出現回数が多い順に抽出します。
+    複数のファイルから最長一致する文章パターンを、パターンの長さ、そして出現回数の多い順に抽出します。
 
     Args:
         file_paths (list): 読み込むテキストファイルのパスのリスト。
         min_pattern_length (int): 考慮する最小のパターン長（単語数）。
 
     Returns:
-        list: (パターン, 出現回数) のタプルのリスト。出現回数が多い順にソートされます。
+        list: (パターン, 出現回数) のタプルのリスト。パターンの長さ、出現回数の順でソートされます。
     """
     all_words = []
     for file_path in file_paths:
@@ -72,8 +71,10 @@ def find_longest_matching_patterns(file_paths, min_pattern_length=2):
         if count > 1: # 複数回出現するものだけを最終結果に含める
             results.append((pattern_str, count))
 
-    # 出現回数が多い順、次にパターンが長い順にソート
-    results.sort(key=lambda x: (x[1], len(x[0])), reverse=True)
+    # ▼▼▼ 修正箇所 ▼▼▼
+    # パターンが長い順、次に出現回数が多い順にソート
+    results.sort(key=lambda x: (len(x[0].split()), x[1]), reverse=True)
+    # ▲▲▲ 修正箇所 ▲▲▲
 
     return results
 
@@ -83,7 +84,10 @@ if __name__ == "__main__":
     # スクリプトからの相対パス、または絶対パスで指定できます
     # 例:
     file_paths_to_analyze = [
-        '../SampleText/AModestProposalByJonathanSwift.txt',
+        '../SampleText/TeacherAndParentArrestedForStealingExams.txt',
+        '../SampleText/HowtoPlanthePerfectRoadTrip.txt',
+        '../SampleText/TrumpWantsRealSugarInCoke,BuyersWantNone.txt',
+        '../SampleText/WorldsMostExpensiveCheeseSoldFor42,000.txt',
     ]
 
     if not file_paths_to_analyze:
