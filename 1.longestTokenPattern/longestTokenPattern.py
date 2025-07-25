@@ -1,9 +1,9 @@
 import collections
-import os
 
-def find_longest_matching_patterns(file_paths, min_pattern_length=2):
+def find_longest_matching_patterns_efficient(file_paths, min_pattern_length=2):
     """
-    複数のファイルから最長一致する文章パターンを、パターンの長さ、そして出現回数の多い順に抽出します。
+    複数のファイルから最長一致する文章パターンを効率的に抽出します。
+    サフィックス配列とLCP配列のアプローチを利用して高速化しています。
 
     Args:
         file_paths (list): 読み込むテキストファイルのパスのリスト。
@@ -16,73 +16,91 @@ def find_longest_matching_patterns(file_paths, min_pattern_length=2):
     for file_path in file_paths:
         try:
             with open(file_path, 'r', encoding='utf-8') as f:
-                text = f.read().lower()  # 小文字に統一して比較
-                # ここでは簡単な単語分割を使用しますが、より高度なトークナイザ（例: NLTKのword_tokenize）も利用可能
-                words = [word for word in text.split() if word.isalnum()] # 英数字のみを抽出
+                text = f.read().lower()
+                words = [word for word in text.split() if word.isalnum()]
                 all_words.extend(words)
         except FileNotFoundError:
-            print(f"エラー: ファイル '{file_path}' が見つかりません。パスを確認してください。")
+            print(f"エラー: ファイル '{file_path}' が見つかりません。")
             continue
         except Exception as e:
             print(f"ファイル '{file_path}' の読み込み中にエラーが発生しました: {e}")
             continue
 
-    if not all_words:
-        print("エラー: 処理できる単語が見つかりませんでした。ファイルが空か、読み込みエラーが発生した可能性があります。")
+    if len(all_words) < min_pattern_length:
         return []
 
-    # 全てのN-gramを生成し、出現回数をカウント
-    pattern_counts = collections.defaultdict(int)
-    for length in range(len(all_words), min_pattern_length - 1, -1):
-        for i in range(len(all_words) - length + 1):
-            pattern_tuple = tuple(all_words[i : i + length])
-            pattern_counts[pattern_tuple] += 1
+    # --- Step 1: サフィックス配列の構築 ---
+    # すべてのサフィックス（接尾辞）の開始インデックスを辞書順にソートして保持
+    # 注: Pythonのソートは比較に時間がかかるため、巨大なテキストではここがボトルネックになり得る
+    #     より高速なSA-ISなどのアルゴリズムも存在するが、可読性のためシンプルな実装に
+    print("サフィックス配列を構築中...")
+    suffix_array = sorted(range(len(all_words)), key=lambda i: all_words[i:])
+    
+    # --- Step 2: LCP配列の構築 ---
+    # LCP (Longest Common Prefix) 配列は、ソート済みサフィックス配列で隣り合う要素同士が
+    # 先頭から何単語一致しているかを保持する
+    print("LCP配列を構築中...")
+    lcp_array = [0] * len(all_words)
+    for i in range(1, len(all_words)):
+        idx1 = suffix_array[i-1]
+        idx2 = suffix_array[i]
+        lcp = 0
+        while (idx1 + lcp < len(all_words) and
+               idx2 + lcp < len(all_words) and
+               all_words[idx1 + lcp] == all_words[idx2 + lcp]):
+            lcp += 1
+        lcp_array[i] = lcp
 
-    # 重複するパターンを排除し、最長の一致パターンを特定
-    final_patterns = {}
-    for pattern_tuple, count in pattern_counts.items():
-        if count > 1: # 複数回出現するパターンのみを対象
-            pattern_str = " ".join(pattern_tuple)
+    # --- Step 3: LCP配列から繰り返しパターンを抽出 ---
+    print("繰り返しパターンを抽出中...")
+    repeated_patterns = collections.defaultdict(int)
+    for i in range(1, len(lcp_array)):
+        lcp = lcp_array[i]
+        if lcp >= min_pattern_length:
+            # LCP値がkである場合、長さkのパターンが少なくとも2回出現している
+            pattern_tuple = tuple(all_words[suffix_array[i] : suffix_array[i] + lcp])
             
-            skip_current_pattern = False
-            for existing_pattern_str in list(final_patterns.keys()):
-                if pattern_str in existing_pattern_str and len(pattern_str) < len(existing_pattern_str):
-                    skip_current_pattern = True
+            # 出現回数を正確にカウントする
+            # LCPがkの箇所が連続している間、そのパターンは繰り返し出現している
+            count = 2
+            for j in range(i + 1, len(lcp_array)):
+                if lcp_array[j] >= lcp:
+                    count += 1
+                else:
                     break
-            if skip_current_pattern:
-                continue
-
-            patterns_to_remove = []
-            for existing_pattern_str in list(final_patterns.keys()):
-                if existing_pattern_str in pattern_str and len(existing_pattern_str) < len(pattern_str):
-                    patterns_to_remove.append(existing_pattern_str)
-            for p in patterns_to_remove:
-                del final_patterns[p]
             
-            if pattern_str not in final_patterns or \
-               (len(pattern_str) > len(final_patterns[pattern_str][1])) or \
-               (len(pattern_str) == len(final_patterns[pattern_str][1]) and count > final_patterns[pattern_str][0]):
-                final_patterns[pattern_str] = (count, pattern_tuple)
+            # すでにより多くの回数でカウントされている場合は更新しない
+            if repeated_patterns[pattern_tuple] < count:
+                 repeated_patterns[pattern_tuple] = count
 
+    # --- Step 4: 最長パターンをフィルタリング ---
+    # サブパターン（より長いパターンに含まれる短いパターン）を除外する
+    print("最長パターンをフィルタリング中...")
+    
+    # パターンを長さの降順でソート
+    sorted_patterns = sorted(repeated_patterns.items(), key=lambda item: len(item[0]), reverse=True)
+    
+    final_patterns = {}
+    for pattern_tuple, count in sorted_patterns:
+        pattern_str = " ".join(pattern_tuple)
+        is_sub_pattern = False
+        # すでに追加済みの、より長いパターンに含まれていないかチェック
+        for existing_pattern in final_patterns.keys():
+            if pattern_str in existing_pattern:
+                is_sub_pattern = True
+                break
+        
+        if not is_sub_pattern:
+            final_patterns[pattern_str] = count
 
-    # (出現回数, パターン文字列) のリストを作成し、ソート
-    results = []
-    for pattern_str, (count, _) in final_patterns.items():
-        if count > 1: # 複数回出現するものだけを最終結果に含める
-            results.append((pattern_str, count))
-
-    # ▼▼▼ 修正箇所 ▼▼▼
-    # パターンが長い順、次に出現回数が多い順にソート
+    # --- Step 5: 結果をソート ---
+    results = list(final_patterns.items())
     results.sort(key=lambda x: (len(x[0].split()), x[1]), reverse=True)
-    # ▲▲▲ 修正箇所 ▲▲▲
 
     return results
 
 # --- 使用例 ---
 if __name__ == "__main__":
-    # ここに分析したいファイルのパスを直接指定してください
-    # スクリプトからの相対パス、または絶対パスで指定できます
-    # 例:
     file_paths_to_analyze = [
         '../SampleText/TeacherAndParentArrestedForStealingExams.txt',
         '../SampleText/HowtoPlanthePerfectRoadTrip.txt',
@@ -91,10 +109,11 @@ if __name__ == "__main__":
     ]
 
     if not file_paths_to_analyze:
-        print("処理するテキストファイルが指定されていません。`file_paths_to_analyze` リストにファイルパスを追加してください。")
+        print("処理するテキストファイルが指定されていません。")
     else:
         print(f"以下のファイルを分析します: {file_paths_to_analyze}")
-        longest_patterns = find_longest_matching_patterns(file_paths_to_analyze)
+        # 効率化された関数を呼び出す
+        longest_patterns = find_longest_matching_patterns_efficient(file_paths_to_analyze)
 
         print("\n--- output: longest word token patterns ---")
         if longest_patterns:
