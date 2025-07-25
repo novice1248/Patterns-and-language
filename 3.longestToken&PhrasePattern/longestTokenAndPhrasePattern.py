@@ -1,5 +1,4 @@
 import collections
-import os
 import re
 import spacy
 from spacy.matcher import Matcher # Matcherをインポート
