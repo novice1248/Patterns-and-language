@@ -1,0 +1,338 @@
+以下のファイルを分析します: ['../SampleText/TeacherAndParentArrestedForStealingExams.txt', '../SampleText/HowtoPlanthePerfectRoadTrip.txt', '../SampleText/TrumpWantsRealSugarInCoke,BuyersWantNone.txt', '../SampleText/WorldsMostExpensiveCheeseSoldFor42,000.txt']
+
+--- トークン（単語）パターンの分析を開始 ---
+シーケンス長 1186 でサフィックス配列を構築中...
+LCP配列を構築中...
+繰り返しパターンを抽出中...
+最長パターンをフィルタリング中...
+
+--- ✅ output: longest token (word) patterns ---
+1. 'the world s most expensive cheese' (x2)
+2. 'high fructose corn syrup which' (x2)
+3. 'of high fructose corn syrup' (x2)
+4. 'the regulatory council dop cabrales' (x2)
+5. 'the ángel díaz herrero cheese' (x2)
+6. 'believed to have helped' (x2)
+7. 'plan where you ll' (x2)
+8. 'the perfect road trip' (x2)
+9. 'the teacher and the' (x2)
+10. 'a lot more' (x2)
+11. 'cane sugar for' (x2)
+12. 'had agreed to' (x2)
+13. 'in the us' (x2)
+14. 'on your trip' (x2)
+15. 'paying the teacher' (x2)
+16. 'school at night' (x2)
+17. 'school facilities manager' (x2)
+18. 'stolen exam papers' (x2)
+19. 'the auction was' (x2)
+20. 'the teachers office' (x2)
+21. 'with cane sugar' (x2)
+22. 'it s' (x8)
+23. 'coca cola' (x6)
+24. 'the school' (x6)
+25. 'for the' (x4)
+26. 'a route' (x3)
+27. 'in its' (x3)
+28. 'more than' (x3)
+29. 'to drive' (x3)
+30. '42 000' (x2)
+31. 'a school' (x2)
+32. 'a student' (x2)
+33. 'after the' (x2)
+34. 'all of' (x2)
+35. 'and they' (x2)
+36. 'at 1' (x2)
+37. 'at a' (x2)
+38. 'believe the' (x2)
+39. 'blue cheese' (x2)
+40. 'but the' (x2)
+41. 'by the' (x2)
+42. 'coke s' (x2)
+43. 'doesn t' (x2)
+44. 'entered the' (x2)
+45. 'extra time' (x2)
+46. 'for coke' (x2)
+47. 'has now' (x2)
+48. 'have been' (x2)
+49. 'high school' (x2)
+50. 'if you' (x2)
+51. 'into a' (x2)
+52. 'is also' (x2)
+53. 'it was' (x2)
+54. 'need to' (x2)
+55. 'no sugar' (x2)
+56. 'of asturias' (x2)
+57. 'of the' (x2)
+58. 'on a' (x2)
+59. 'on july' (x2)
+60. 'say the' (x2)
+61. 'school in' (x2)
+62. 'several times' (x2)
+63. 'so you' (x2)
+64. 'south korea' (x2)
+65. 'student s' (x2)
+66. 'sugar is' (x2)
+67. 'take a' (x2)
+68. 'that it' (x2)
+69. 'the cheese' (x2)
+70. 'the mother' (x2)
+71. 'this is' (x2)
+72. 'to plan' (x2)
+73. 'to see' (x2)
+74. 'trump said' (x2)
+75. 'year old' (x2)
+76. 'you can' (x2)
+77. 'you have' (x2)
+----------------------------------------
+
+--- 一般化（名詞句/動詞句 + 品詞）パターンの分析を開始 ---
+spaCyによる言語解析を実行中... (テキストが長いと時間がかかります)
+一般化シーケンス長 800 でパターンを分析します。
+シーケンス長 800 でサフィックス配列を構築中...
+LCP配列を構築中...
+繰り返しパターンを抽出中...
+最長パターンをフィルタリング中...
+
+--- ✅ output: longest generalized (phrases + POS) patterns ---
+1. 'ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "of her past exams South Korea is known for the high pressure students experience in its education system with the results of university entrance exams"
+2. 'ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "for 10 months in a cave in the mountains of Asturias at 1,500 meters"
+3. 'ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "in the mountains of Asturias at 1,500 meters above sea level The temperature"
+4. 'NOUN_PHRASE VERB_PHRASE SCONJ NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "you 'll stay Whether you choose to stay in hotels"
+5. 'ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE NOUN_PHRASE ADP' (x2)
+   └ ex: "with a school facilities manager who is believed to have helped them by"
+6. 'NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "the high pressure students experience in its education system with the results of university entrance exams especially deciding"
+7. 'NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE ADP' (x2)
+   └ ex: "all of her past exams South Korea is known for the high pressure students experience in"
+8. 'NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE SCONJ NOUN_PHRASE VERB_PHRASE ADP' (x2)
+   └ ex: "a student's parent have been arrested in South Korea after they allegedly broke into"
+9. 'ADP NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "after the town of Cabrales The $42,000 cheese weighed a little over 2 kilograms"
+10. 'ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "from high-fructose corn syrup which has sweetened Coke in the US"
+11. 'ADP NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE CCONJ NOUN_PHRASE' (x2)
+   └ ex: "than people traveling by plane or train"
+12. 'ADV NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "long it takes to drive between each place"
+13. 'AUX NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "be a very good move by them You 'll see It"
+14. 'NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE AUX' (x2)
+   └ ex: "those in authority at Coca-Cola This will"
+15. 'NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "the school in February of last year the police have found"
+16. 'NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE CCONJ' (x2)
+   └ ex: "thousands of American manufacturing jobs Kennedy blames corn syrup and"
+17. 'NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "the teacher for stolen exam papers Investigators believe the teacher may have"
+18. 'NOUN_PHRASE CCONJ VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "hotels or rent a camper on your trip it"
+19. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "the change The company then defended its use of high-fructose corn syrup which"
+20. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "you like blue cheese Not everybody does For some"
+21. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "judges tasted cheeses produced by 15 different cheese factories This"
+22. 'NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "This is used to sweeten the drink in Mexico"
+23. 'NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "it had agreed to make the change The company then defended"
+24. 'PART VERB_PHRASE ADP VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "to enter by pressing her fingerprint on the entrance machine"
+25. 'VERB_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "was made by the Ángel Díaz Herrero cheese factory Made from cow's milk"
+26. 'VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "left the school in February of last year the police"
+27. 'VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "also paying the teacher for stolen exam papers Investigators believe the teacher"
+28. 'VERB_PHRASE NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE NOUN_PHRASE ADP' (x2)
+   └ ex: "planning the perfect road trip Decide on a route Plan a route by"
+29. 'VERB_PHRASE PART VERB_PHRASE NOUN_PHRASE ADP VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "is believed to have helped them by leaving the door"
+30. 'ADP NOUN_PHRASE ADP NOUN_PHRASE NUM NOUN_PHRASE' (x2)
+   └ ex: "at 1:20 a.m. on July 4 The 31-year-old teacher"
+31. 'ADP NOUN_PHRASE ADP NOUN_PHRASE VERB_PHRASE PART' (x2)
+   └ ex: "into a school at night intending to"
+32. 'ADP NOUN_PHRASE NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "by El Llagar de Colloto a restaurant in Oviedo the capital"
+33. 'NOUN_PHRASE ADP NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "the door to the teachers' office unlocked Investigators say"
+34. 'NOUN_PHRASE ADV SCONJ NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "the entrance machine However when they entered the teachers' office"
+35. 'NOUN_PHRASE AUX NOUN_PHRASE CCONJ NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "Sugar is poison and Americans need"
+36. 'NOUN_PHRASE AUX VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "the mother was also paying the teacher for stolen exam papers"
+37. 'NOUN_PHRASE CCONJ NOUN_PHRASE VERB_PHRASE NOUN_PHRASE ADV' (x2)
+   └ ex: "train but they also require a lot more planning Here"
+38. 'NOUN_PHRASE CCONJ NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "Mexico and some fans say it tastes"
+39. 'NOUN_PHRASE CCONJ NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE' (x2)
+   └ ex: "The teacher and the student's mother are believed to have broken"
+40. 'NOUN_PHRASE NOUN_PHRASE AUX VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "The 31-year-old teacher who had previously worked at the school"
+41. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "stolen exam papers Investigators believe the teacher may have stolen exam papers"
+42. 'NOUN_PHRASE SCONJ NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "South Korea after they allegedly broke into a school"
+43. 'NOUN_PHRASE VERB_PHRASE ADP NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "you drive past something that looks"
+44. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE CCONJ NOUN_PHRASE ADP' (x2)
+   └ ex: "Police later arrested the teacher and the mother along"
+45. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "the teachers' office unlocked Investigators say the 48-year-old mother had been paying"
+46. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE' (x2)
+   └ ex: "Trump said Coca-Cola had agreed to switch"
+47. 'SCONJ NOUN_PHRASE VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "Although the teacher left the school in February"
+48. 'SCONJ NOUN_PHRASE VERB_PHRASE SCONJ NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "where you 'll stay Whether you choose"
+49. 'VERB_PHRASE ADP NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "have broken into a girls' high school in Andong a city"
+50. 'VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE AUX' (x2)
+   └ ex: "rent a camper on your trip it 's"
+51. 'VERB_PHRASE NOUN_PHRASE ADP NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "leaving the door to the teachers' office unlocked Investigators"
+52. 'VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE PART VERB_PHRASE' (x2)
+   └ ex: "say the 48-year-old mother had been paying the teacher to privately tutor"
+53. 'VERB_PHRASE NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE ADP' (x2)
+   └ ex: "mean you have to stick to"
+54. 'ADP NOUN_PHRASE NOUN_PHRASE AUX VERB_PHRASE' (x3)
+   └ ex: "during exam periods The school facilities manager is also believed"
+55. 'VERB_PHRASE ADP NOUN_PHRASE CCONJ VERB_PHRASE' (x3)
+   └ ex: "looking at a map or searching"
+56. 'ADP NOUN_PHRASE CCONJ VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "in hotels or rent a camper"
+57. 'ADP NOUN_PHRASE NOUN_PHRASE AUX NOUN_PHRASE' (x2)
+   └ ex: "for the country's obesity problems Sugar is poison"
+58. 'ADP NOUN_PHRASE SCONJ NOUN_PHRASE AUX' (x2)
+   └ ex: "to each day If you 're"
+59. 'ADP NOUN_PHRASE VERB_PHRASE NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "to it Give yourself extra time"
+60. 'ADV ADP NOUN_PHRASE NOUN_PHRASE AUX' (x2)
+   └ ex: "usually during exam periods The school facilities manager is"
+61. 'CCONJ VERB_PHRASE NOUN_PHRASE NOUN_PHRASE ADP' (x2)
+   └ ex: "and given her a score of"
+62. 'NOUN ADP NOUN_PHRASE SCONJ NOUN_PHRASE' (x2)
+   └ ex: "times in the past Although the teacher"
+63. 'NOUN_PHRASE ADP NOUN_PHRASE NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "a girls' high school in Andong a city southeast"
+64. 'NOUN_PHRASE AUX ADJ PART VERB_PHRASE' (x2)
+   └ ex: "the school was able to enter"
+65. 'NOUN_PHRASE AUX NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "It 's a type of cheese"
+66. 'NOUN_PHRASE AUX PART VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "a plan does n't mean you"
+67. 'NOUN_PHRASE CCONJ NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "corn syrup and other sugars for the country's obesity problems"
+68. 'NOUN_PHRASE CCONJ NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "Corn Refiners Association President and CEO John Bode said replacing"
+69. 'NOUN_PHRASE CCONJ VERB_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "Spain's northern Asturias region and named after the town"
+70. 'NOUN_PHRASE CCONJ VERB_PHRASE NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "her and given her a score"
+71. 'NOUN_PHRASE NOUN_PHRASE ADP NOUN_PHRASE AUX' (x2)
+   └ ex: "which teachers at South Korean schools are"
+72. 'NOUN_PHRASE NOUN_PHRASE AUX VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "which US Health Secretary Robert F. Kennedy has previously said he"
+73. 'NOUN_PHRASE NOUN_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "Andong a city southeast of Seoul"
+74. 'NOUN_PHRASE SCONJ NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "the teachers' office where exam papers were stored an alarm"
+75. 'NOUN_PHRASE VERB_PHRASE ADP CCONJ NOUN_PHRASE' (x2)
+   └ ex: "an alarm went off and they"
+76. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE CCONJ VERB_PHRASE' (x2)
+   └ ex: "cane sugar makes no sense and would cost"
+77. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE ADV' (x2)
+   └ ex: "the daughter had maintained top grades usually coming first"
+78. 'NOUN_PHRASE VERB_PHRASE PART VERB_PHRASE CCONJ' (x2)
+   └ ex: "you want to see and"
+79. 'PART VERB_PHRASE ADP NOUN_PHRASE CCONJ' (x2)
+   └ ex: "to talk to friends or"
+80. 'PART VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "to Plan the Perfect Road Trip Road trips allow you"
+81. 'PART VERB_PHRASE SCONJ NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "to plan where you 'll sleep"
+82. 'VERB_PHRASE NOUN_PHRASE CCONJ VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "now expelled her and given her"
+83. 'VERB_PHRASE NOUN_PHRASE NOUN_PHRASE ADP NOUN_PHRASE' (x2)
+   └ ex: "Give yourself extra time on your trip"
+84. 'VERB_PHRASE NOUN_PHRASE NOUN_PHRASE CCONJ NOUN_PHRASE' (x2)
+   └ ex: "steal exam papers The teacher and the student's mother"
+85. 'VERB_PHRASE NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "deleting the school's CCTV footage Media reports say the daughter"
+86. 'VERB_PHRASE PART VERB_PHRASE CCONJ NOUN_PHRASE' (x2)
+   └ ex: "allowed to do and they"
+87. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE AUX' (x4)
+   └ ex: "they believe the mother was"
+88. 'NOUN_PHRASE ADP NOUN_PHRASE SCONJ' (x3)
+   └ ex: "the entire course of their future career How"
+89. 'NOUN_PHRASE PART VERB_PHRASE NOUN_PHRASE' (x3)
+   └ ex: "the teacher to privately tutor her daughter"
+90. 'VERB_PHRASE ADV ADP NOUN_PHRASE' (x3)
+   └ ex: "usually coming first in her school"
+91. 'ADP NOUN_PHRASE ADP VERB_PHRASE' (x2)
+   └ ex: "of advice for planning"
+92. 'ADP NOUN_PHRASE ADV NOUN_PHRASE' (x2)
+   └ ex: "in her school However the school"
+93. 'ADP NOUN_PHRASE AUX ADJ' (x2)
+   └ ex: "at the school was able"
+94. 'ADV NOUN_PHRASE AUX PART' (x2)
+   └ ex: "somewhere that is n't"
+95. 'ADV NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "away Police later arrested the teacher"
+96. 'AUX ADV ADJ VERB_PHRASE' (x2)
+   └ ex: "is even better Driving"
+97. 'CCONJ NOUN_PHRASE CCONJ NOUN_PHRASE' (x2)
+   └ ex: "or train but they"
+98. 'NOUN_PHRASE ADP NOUN_PHRASE ADV' (x2)
+   └ ex: "her fingerprint on the entrance machine However"
+99. 'NOUN_PHRASE ADV ADP NOUN_PHRASE' (x2)
+   └ ex: "cane sugar instead of high-fructose corn syrup"
+100. 'NOUN_PHRASE AUX ADV ADJ' (x2)
+   └ ex: "it 's often cheaper"
+101. 'NOUN_PHRASE AUX ADV NOUN_PHRASE' (x2)
+   └ ex: "It 's also a great idea"
+102. 'NOUN_PHRASE CCONJ NOUN_PHRASE AUX' (x2)
+   └ ex: "low- or no-sugar drinks And experts are"
+103. 'NOUN_PHRASE NOUN_PHRASE AUX ADJ' (x2)
+   └ ex: "your trip it 's best"
+104. 'NOUN_PHRASE NOUN_PHRASE AUX AUX' (x2)
+   └ ex: "family who have been"
+105. 'VERB_PHRASE ADJ NOUN_PHRASE AUX' (x2)
+   └ ex: "make sure it 's"
+106. 'VERB_PHRASE ADP NOUN_PHRASE AUX' (x2)
+   └ ex: "previously worked at the school was"
+107. 'VERB_PHRASE ADP NOUN_PHRASE DET' (x2)
+   └ ex: "drive for no more than seven hours a"
+108. 'VERB_PHRASE NOUN_PHRASE AUX ADV' (x2)
+   └ ex: "visit It 's also"
+109. 'ADJ ADP NOUN_PHRASE' (x2)
+   └ ex: "more than people"
+110. 'ADV ADV NOUN_PHRASE' (x2)
+   └ ex: "too far You"
+111. 'ADV NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "only what university"
+112. 'AUX ADP NOUN_PHRASE' (x2)
+   └ ex: "been to an area"
+113. 'AUX AUX NOUN_PHRASE' (x2)
+   └ ex: "will be a very good move"
+114. 'NOUN SCONJ ADV' (x2)
+   └ ex: "times since then"
+115. 'NOUN_PHRASE ADJ NOUN' (x2)
+   └ ex: "stolen exam papers several times"
+116. 'NOUN_PHRASE ADP ADV' (x2)
+   └ ex: "a detour to somewhere"
+117. 'NUM ADP NOUN_PHRASE' (x2)
+   └ ex: "zero for all"
+118. 'NUM NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "16 Trump said"
+119. 'SYM NUM NOUN_PHRASE' (x2)
+   └ ex: "$ 42,000 It"
+120. 'VERB_PHRASE DET NOUN' (x2)
+   └ ex: "see a lot"
+----------------------------------------
