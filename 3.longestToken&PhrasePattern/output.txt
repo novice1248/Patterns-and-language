@@ -1,0 +1,230 @@
+以下のファイルを分析します: ['../SampleText/TeacherAndParentArrestedForStealingExams.txt', '../SampleText/HowtoPlanthePerfectRoadTrip.txt', '../SampleText/TrumpWantsRealSugarInCoke,BuyersWantNone.txt', '../SampleText/WorldsMostExpensiveCheeseSoldFor42,000.txt']
+
+--- トークン（単語）パターンの分析を開始 ---
+シーケンス長 1186 でサフィックス配列を構築中...
+LCP配列を構築中...
+繰り返しパターンを抽出中...
+最長パターンをフィルタリング中...
+
+--- ✅ output: longest token (word) patterns ---
+1. 'the world s most expensive cheese' (x2)
+2. 'high fructose corn syrup which' (x2)
+3. 'of high fructose corn syrup' (x2)
+4. 'the regulatory council dop cabrales' (x2)
+5. 'the ángel díaz herrero cheese' (x2)
+6. 'believed to have helped' (x2)
+7. 'plan where you ll' (x2)
+8. 'the perfect road trip' (x2)
+9. 'the teacher and the' (x2)
+10. 'a lot more' (x2)
+11. 'cane sugar for' (x2)
+12. 'had agreed to' (x2)
+13. 'in the us' (x2)
+14. 'on your trip' (x2)
+15. 'paying the teacher' (x2)
+16. 'school at night' (x2)
+17. 'school facilities manager' (x2)
+18. 'stolen exam papers' (x2)
+19. 'the auction was' (x2)
+20. 'the teachers office' (x2)
+21. 'with cane sugar' (x2)
+22. 'it s' (x8)
+23. 'coca cola' (x6)
+24. 'the school' (x6)
+25. 'for the' (x4)
+26. 'a route' (x3)
+27. 'in its' (x3)
+28. 'more than' (x3)
+29. 'to drive' (x3)
+30. '42 000' (x2)
+31. 'a school' (x2)
+32. 'a student' (x2)
+33. 'after the' (x2)
+34. 'all of' (x2)
+35. 'and they' (x2)
+36. 'at 1' (x2)
+37. 'at a' (x2)
+38. 'believe the' (x2)
+39. 'blue cheese' (x2)
+40. 'but the' (x2)
+41. 'by the' (x2)
+42. 'coke s' (x2)
+43. 'doesn t' (x2)
+44. 'entered the' (x2)
+45. 'extra time' (x2)
+46. 'for coke' (x2)
+47. 'has now' (x2)
+48. 'have been' (x2)
+49. 'high school' (x2)
+50. 'if you' (x2)
+51. 'into a' (x2)
+52. 'is also' (x2)
+53. 'it was' (x2)
+54. 'need to' (x2)
+55. 'no sugar' (x2)
+56. 'of asturias' (x2)
+57. 'of the' (x2)
+58. 'on a' (x2)
+59. 'on july' (x2)
+60. 'say the' (x2)
+61. 'school in' (x2)
+62. 'several times' (x2)
+63. 'so you' (x2)
+64. 'south korea' (x2)
+65. 'student s' (x2)
+66. 'sugar is' (x2)
+67. 'take a' (x2)
+68. 'that it' (x2)
+69. 'the cheese' (x2)
+70. 'the mother' (x2)
+71. 'this is' (x2)
+72. 'to plan' (x2)
+73. 'to see' (x2)
+74. 'trump said' (x2)
+75. 'year old' (x2)
+76. 'you can' (x2)
+77. 'you have' (x2)
+----------------------------------------
+
+--- 一般化（名詞句/動詞句 + 元の単語）パターンの分析を開始 ---
+spaCyによる言語解析を実行中... (テキストが長いと時間がかかります)
+一般化シーケンス長 800 でパターンを分析します。
+シーケンス長 800 でサフィックス配列を構築中...
+LCP配列を構築中...
+繰り返しパターンを抽出中...
+最長パターンをフィルタリング中...
+
+--- ✅ output: longest generalized (phrases + words) patterns ---
+1. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE for NOUN_PHRASE in NOUN_PHRASE' (x2)
+   └ ex: "her past exams South Korea is known for the high pressure students experience in its education system"
+2. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE by NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "judges tasted cheeses produced by 15 different cheese factories This"
+3. 'NOUN_PHRASE VERB_PHRASE to VERB_PHRASE NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "it had agreed to make the change The company then defended"
+4. 'NOUN_PHRASE of NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE and' (x2)
+   └ ex: "thousands of American manufacturing jobs Kennedy blames corn syrup and"
+5. 'VERB_PHRASE to VERB_PHRASE NOUN_PHRASE by VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "is believed to have helped them by leaving the door"
+6. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "stolen exam papers Investigators believe the teacher may have stolen exam papers"
+7. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE in NOUN_PHRASE' (x2)
+   └ ex: "high-fructose corn syrup which has sweetened Coke in the US"
+8. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE to VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "a school facilities manager who is believed to have helped them"
+9. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "the teachers' office unlocked Investigators say the 48-year-old mother had been paying"
+10. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE to VERB_PHRASE' (x2)
+   └ ex: "Trump said Coca-Cola had agreed to switch"
+11. 'NOUN_PHRASE VERB_PHRASE to VERB_PHRASE to NOUN_PHRASE' (x2)
+   └ ex: "you need to drive to each day"
+12. 'NOUN_PHRASE and NOUN_PHRASE VERB_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "Mexico and some fans say it tastes"
+13. 'NOUN_PHRASE and NOUN_PHRASE VERB_PHRASE to VERB_PHRASE' (x2)
+   └ ex: "The teacher and the student's mother are believed to have broken"
+14. 'VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE to VERB_PHRASE' (x2)
+   └ ex: "say the 48-year-old mother had been paying the teacher to privately tutor"
+15. 'VERB_PHRASE NOUN_PHRASE VERB_PHRASE to VERB_PHRASE to' (x2)
+   └ ex: "mean you have to stick to"
+16. 'VERB_PHRASE NOUN_PHRASE for NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "also paying the teacher for stolen exam papers Investigators believe"
+17. 'NOUN_PHRASE in NOUN_PHRASE in NOUN_PHRASE' (x3)
+   └ ex: "its sales volumes in its largest markets in the second quarter"
+18. 'NOUN_PHRASE NOUN_PHRASE has VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "which US Health Secretary Robert F. Kennedy has previously said he"
+19. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "you like blue cheese Not everybody does"
+20. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE and NOUN_PHRASE' (x2)
+   └ ex: "Police later arrested the teacher and the mother"
+21. 'NOUN_PHRASE VERB_PHRASE NOUN_PHRASE and VERB_PHRASE' (x2)
+   └ ex: "cane sugar makes no sense and would cost"
+22. 'NOUN_PHRASE and NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "Corn Refiners Association President and CEO John Bode said replacing"
+23. 'NOUN_PHRASE but NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "train but they also require a lot more planning"
+24. 'NOUN_PHRASE does n't VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "a plan does n't mean you"
+25. 'NOUN_PHRASE in NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "Cabrales in which judges tasted"
+26. 'NOUN_PHRASE in NOUN_PHRASE of NOUN_PHRASE' (x2)
+   └ ex: "the school in February of last year"
+27. 'NOUN_PHRASE of NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "a type of cheese called Cabrales"
+28. 'NOUN_PHRASE of NOUN_PHRASE at NOUN_PHRASE' (x2)
+   └ ex: "southeast of Seoul at 1:20 a.m."
+29. 'NOUN_PHRASE of NOUN_PHRASE in NOUN_PHRASE' (x2)
+   └ ex: "all of those in authority"
+30. 'VERB_PHRASE NOUN_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "deleting the school's CCTV footage Media reports say the daughter"
+31. 'VERB_PHRASE NOUN_PHRASE NOUN_PHRASE and NOUN_PHRASE' (x2)
+   └ ex: "steal exam papers The teacher and the student's mother"
+32. 'VERB_PHRASE NOUN_PHRASE and VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "now expelled her and given her"
+33. 'VERB_PHRASE NOUN_PHRASE of NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "then defended its use of high-fructose corn syrup which"
+34. 'for NOUN_PHRASE of NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "for all of her past exams South Korea"
+35. 'for NOUN_PHRASE to VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "for interesting places to visit It"
+36. 'of NOUN_PHRASE NOUN_PHRASE has VERB_PHRASE' (x2)
+   └ ex: "of Coke's fastest-growing products PepsiCo has also noted"
+37. 'to VERB_PHRASE NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "to Plan the Perfect Road Trip Road trips allow you"
+38. 'to VERB_PHRASE NOUN_PHRASE for NOUN_PHRASE' (x2)
+   └ ex: "to using cane sugar for its US Coke"
+39. 'NOUN_PHRASE NOUN_PHRASE VERB_PHRASE in' (x2)
+   └ ex: "Coca-Cola Zero Sugar which was introduced in"
+40. 'NOUN_PHRASE NOUN_PHRASE in NOUN_PHRASE' (x2)
+   └ ex: "better scenery Regular Coca-Cola in the US"
+41. 'NOUN_PHRASE NOUN_PHRASE of NOUN_PHRASE' (x2)
+   └ ex: "a city southeast of Seoul"
+42. 'NOUN_PHRASE VERB_PHRASE at NOUN_PHRASE' (x2)
+   └ ex: "the world's most expensive cheese sold at auction"
+43. 'NOUN_PHRASE VERB_PHRASE from NOUN_PHRASE' (x2)
+   └ ex: "the second quarter came from low- or no-sugar drinks"
+44. 'NOUN_PHRASE VERB_PHRASE in NOUN_PHRASE' (x2)
+   └ ex: "a student's parent have been arrested in South Korea"
+45. 'NOUN_PHRASE after NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "South Korea after they allegedly broke"
+46. 'NOUN_PHRASE or VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "hotels or rent a camper"
+47. 'VERB_PHRASE NOUN_PHRASE on NOUN_PHRASE' (x2)
+   └ ex: "pressing her fingerprint on the entrance machine"
+48. 'VERB_PHRASE on NOUN_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "Decide on a route Plan a route"
+49. 'VERB_PHRASE that NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "have found that she entered"
+50. 'VERB_PHRASE to VERB_PHRASE and' (x2)
+   └ ex: "allowed to do and"
+51. 'VERB_PHRASE where NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "plan where you 'll sleep"
+52. 'by NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "by them You 'll see"
+53. 'from NOUN_PHRASE NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "from high-fructose corn syrup which has sweetened"
+54. 'to NOUN_PHRASE VERB_PHRASE NOUN_PHRASE' (x2)
+   └ ex: "to the teachers' office unlocked Investigators"
+55. 'NOUN_PHRASE NOUN_PHRASE NOUN_PHRASE' (x4)
+   └ ex: "Andong a city southeast"
+56. 'NOUN_PHRASE NOUN_PHRASE 's' (x3)
+   └ ex: "your trip it 's"
+57. 'NOUN_PHRASE NOUN_PHRASE is' (x3)
+   └ ex: "exam periods The school facilities manager is"
+58. 'NOUN_PHRASE with NOUN_PHRASE' (x3)
+   └ ex: "its education system with the results"
+59. 'NOUN_PHRASE NOUN_PHRASE was' (x2)
+   └ ex: "Coke's needs The corn industry was"
+60. 'NOUN_PHRASE or NOUN_PHRASE' (x2)
+   └ ex: "plane or train"
+61. 'NOUN_PHRASE several times' (x2)
+   └ ex: "stolen exam papers several times"
+62. 'VERB_PHRASE NOUN_PHRASE 's' (x2)
+   └ ex: "visit It 's"
+63. 'VERB_PHRASE into NOUN_PHRASE' (x2)
+   └ ex: "allegedly broke into a school"
+64. 'VERB_PHRASE with NOUN_PHRASE' (x2)
+   └ ex: "soon be sweetened with cane sugar"
+65. 'in NOUN_PHRASE and' (x2)
+   └ ex: "in Mexico and"
+66. 'so NOUN_PHRASE VERB_PHRASE' (x2)
+   └ ex: "so you know"
+----------------------------------------
