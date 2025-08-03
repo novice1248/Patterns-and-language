@@ -11,11 +11,11 @@ def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
         return []
 
     # Step 1: サフィックス配列の構築
-    print(f"シーケンス長 {len(sequence)} でサフィックス配列を構築中...")
+    print(f"Building suffix array for sequence of length {len(sequence)}...")
     suffix_array = sorted(range(len(sequence)), key=lambda i: sequence[i:])
 
     # Step 2: LCP配列の構築
-    print("LCP配列を構築中...")
+    print("Building LCP arrays...")
     lcp_array = [0] * len(sequence)
     for i in range(1, len(sequence)):
         idx1, idx2 = suffix_array[i-1], suffix_array[i]
@@ -27,7 +27,7 @@ def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
         lcp_array[i] = lcp
 
     # Step 3: LCP配列から繰り返しパターンを抽出
-    print("繰り返しパターンを抽出中...")
+    print("Extracting repeated patterns...")
     repeated_patterns = collections.defaultdict(int)
     for i in range(1, len(lcp_array)):
         lcp = lcp_array[i]
@@ -45,7 +45,7 @@ def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
         repeated_patterns[pattern] = max(repeated_patterns.get(pattern, 0), count)
 
     # Step 4: 最長パターンをフィルタリング
-    print("最長パターンをフィルタリング中...")
+    print("Filtering longest patterns...")
     final_patterns = {}
     joiner = " "
     
@@ -79,7 +79,7 @@ def find_longest_token_patterns(file_paths, min_pattern_length=2):
     """
     複数のファイルから最長一致する「トークン（単語）」パターンを抽出します。
     """
-    print("\n--- トークン（単語）パターンの分析を開始 ---")
+    print("\n--- Starting analysis of Token patterns ---")
     all_words = []
     for file_path in file_paths:
         try:
@@ -87,7 +87,7 @@ def find_longest_token_patterns(file_paths, min_pattern_length=2):
                 words = re.findall(r'\b\w+\b', f.read().lower())
                 all_words.extend(words)
         except Exception as e:
-            print(f"ファイル '{file_path}' の処理中にエラー: {e}")
+            print(f"Error: Failed to load the file '{file_path}'.: {e}")
             continue
     
     return _find_longest_patterns_generic(tuple(all_words), min_pattern_length)
@@ -97,12 +97,12 @@ def find_longest_generalized_patterns(file_paths, min_pattern_length=3):
     """
     spaCyを使って名詞句と動詞句を一般化し、最長の構文パターンを抽出します。
     """
-    print("\n--- 一般化（名詞句/動詞句 + 元の単語）パターンの分析を開始 ---")
+    print("\n--- Starting analysis of noun/verb phrases + words patterns ---")
     try:
         nlp = spacy.load("en_core_web_sm")
     except OSError:
-        print("エラー: spaCyのモデル 'en_core_web_sm' が見つかりません。")
-        print("コマンド: `python -m spacy download en_core_web_sm` を実行してください。")
+        print("Error: spaCy's model 'en_core_web_sm' is not found.")
+        print("Command: Please run `python -m spacy download en_core_web_sm`")
         return []
 
     all_text = ""
@@ -111,11 +111,11 @@ def find_longest_generalized_patterns(file_paths, min_pattern_length=3):
             with open(file_path, 'r', encoding='utf-8') as f:
                 all_text += f.read().replace('\n', ' ') + " "
         except Exception as e:
-            print(f"ファイル '{file_path}' の処理中にエラー: {e}")
+            print(f"Error: Failed to load the file '{file_path}'.: {e}")
             continue
     all_text = re.sub(r'\s+', ' ', all_text)
 
-    print("spaCyによる言語解析を実行中... (テキストが長いと時間がかかります)")
+    print("Performing language analysis with spaCy... (Processing may take longer for large texts)")
     doc = nlp(all_text)
 
     # ▼▼▼【修正】ここから動詞句の抽出ロジックを追加 ▼▼▼
@@ -172,7 +172,7 @@ def find_longest_generalized_patterns(file_paths, min_pattern_length=3):
             if len(examples_map[pattern_gen]) < 5:
                 examples_map[pattern_gen].append(pattern_text)
 
-    print(f"一般化シーケンス長 {len(generalized_sequence)} でパターンを分析します。")
+    print(f"Analyzing patterns with generalized sequence length {len(generalized_sequence)}.")
     return _find_longest_patterns_generic(generalized_sequence, min_pattern_length, examples_map)
 
 
@@ -187,9 +187,9 @@ if __name__ == "__main__":
     ]
 
     if not file_paths_to_analyze:
-        print("処理するテキストファイルが指定されていません。`file_paths_to_analyze` リストにファイルパスを追加してください。")
+        print("Error: No text files specified for processing. Please add file paths to the `file_paths_to_analyze` list.")
     else:
-        print(f"以下のファイルを分析します: {file_paths_to_analyze}")
+        print(f"Analyzing the following files: {file_paths_to_analyze}")
 
         # 1. トークン（単語）パターンの解析と出力
         token_patterns = find_longest_token_patterns(file_paths_to_analyze, min_pattern_length=2)
@@ -198,7 +198,7 @@ if __name__ == "__main__":
             for i, (pattern, count, _) in enumerate(token_patterns):
                 print(f"{i+1}. '{pattern}' (x{count})")
         else:
-            print("一致するトークンパターンは見つかりませんでした。")
+            print("No matching Token patterns were found.")
         print("-" * 40)
 
         # 2. 一般化（名詞句/動詞句 + 元の単語）パターンの解析と出力
@@ -210,5 +210,5 @@ if __name__ == "__main__":
                 if example:
                     print(f"   └ ex: \"{example}\"")
         else:
-            print("一致する一般化パターンは見つかりませんでした。")
+            print("No matching patterns were found.")
         print("-" * 40)

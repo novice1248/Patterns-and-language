@@ -20,10 +20,10 @@ def find_longest_matching_patterns_efficient(file_paths, min_pattern_length=2):
                 words = [word for word in text.split() if word.isalnum()]
                 all_words.extend(words)
         except FileNotFoundError:
-            print(f"エラー: ファイル '{file_path}' が見つかりません。")
+            print(f"Error: The file '{file_path}' was not found. Please check the path.")
             continue
         except Exception as e:
-            print(f"ファイル '{file_path}' の読み込み中にエラーが発生しました: {e}")
+            print(f"Error: Failed to load the file '{file_path}'.: {e}")
             continue
 
     if len(all_words) < min_pattern_length:
@@ -33,13 +33,13 @@ def find_longest_matching_patterns_efficient(file_paths, min_pattern_length=2):
     # すべてのサフィックス（接尾辞）の開始インデックスを辞書順にソートして保持
     # 注: Pythonのソートは比較に時間がかかるため、巨大なテキストではここがボトルネックになり得る
     #     より高速なSA-ISなどのアルゴリズムも存在するが、可読性のためシンプルな実装に
-    print("サフィックス配列を構築中...")
+    print("Building suffix array...")
     suffix_array = sorted(range(len(all_words)), key=lambda i: all_words[i:])
     
     # --- Step 2: LCP配列の構築 ---
     # LCP (Longest Common Prefix) 配列は、ソート済みサフィックス配列で隣り合う要素同士が
     # 先頭から何単語一致しているかを保持する
-    print("LCP配列を構築中...")
+    print("Building LCP array...")
     lcp_array = [0] * len(all_words)
     for i in range(1, len(all_words)):
         idx1 = suffix_array[i-1]
@@ -52,7 +52,7 @@ def find_longest_matching_patterns_efficient(file_paths, min_pattern_length=2):
         lcp_array[i] = lcp
 
     # --- Step 3: LCP配列から繰り返しパターンを抽出 ---
-    print("繰り返しパターンを抽出中...")
+    print("Extracting repeated patterns...")
     repeated_patterns = collections.defaultdict(int)
     for i in range(1, len(lcp_array)):
         lcp = lcp_array[i]
@@ -75,7 +75,7 @@ def find_longest_matching_patterns_efficient(file_paths, min_pattern_length=2):
 
     # --- Step 4: 最長パターンをフィルタリング ---
     # サブパターン（より長いパターンに含まれる短いパターン）を除外する
-    print("最長パターンをフィルタリング中...")
+    print("Filtering longest patterns...")
     
     # パターンを長さの降順でソート
     sorted_patterns = sorted(repeated_patterns.items(), key=lambda item: len(item[0]), reverse=True)
@@ -109,9 +109,9 @@ if __name__ == "__main__":
     ]
 
     if not file_paths_to_analyze:
-        print("処理するテキストファイルが指定されていません。")
+        print("Error: No text files specified for processing. Please add file paths to the `file_paths_to_analyze` list.")
     else:
-        print(f"以下のファイルを分析します: {file_paths_to_analyze}")
+        print(f"Analyzing the following files: {file_paths_to_analyze}")
         # 効率化された関数を呼び出す
         longest_patterns = find_longest_matching_patterns_efficient(file_paths_to_analyze)
 
@@ -120,4 +120,4 @@ if __name__ == "__main__":
             for i, (pattern, count) in enumerate(longest_patterns):
                 print(f"{i+1}. {pattern} (x{count})")
         else:
-            print("一致するパターンは見つかりませんでした。")
+            print("No matching patterns were found.")

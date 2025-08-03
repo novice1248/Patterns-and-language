@@ -24,7 +24,7 @@ function App() {
     // 改行で区切られたURLを配列に変換
     const urlList = urls.split('\n').filter(url => url.trim() !== '');
     if (urlList.length === 0) {
-      setError('分析するURLを1つ以上入力してください。');
+      setError('Please enter at least one URL to analyze.');
       return;
     }
 
@@ -40,7 +40,7 @@ function App() {
       setResults(response.data);
     } catch (err) {
       console.error(err);
-      setError('分析中にエラーが発生しました。バックエンドサーバーが起動しているか確認してください。');
+      setError('An error occurred during analysis. Please check the backend server is running.');
     } finally {
       setLoading(false);
     }
@@ -49,9 +49,9 @@ function App() {
   return (
     <div className="App">
       <header className="App-header">
-        <h1>Webページパターン分析ツール</h1>
+        <h1>WebPagePatternAnalysisTool</h1>
         <div className="container">
-          <p>分析したいURLを改行区切りで入力してください。</p>
+          <p>Enter each URL you want to analyze on a new line.</p>
           <textarea
             value={urls}
             onChange={(e) => setUrls(e.target.value)}
@@ -59,7 +59,7 @@ function App() {
             placeholder="https://example.com/page1&#10;https://example.com/page2"
           />
           <button onClick={handleAnalyze} disabled={loading}>
-            {loading ? '分析中...' : '分析を実行'}
+            {loading ? 'Analysing...' : 'run analysis'}
           </button>
           
           {error && <p className="error">{error}</p>}
@@ -67,7 +67,7 @@ function App() {
           {results && (
             <div className="results-container">
               <div className="result-column">
-                <h2>単語パターン TOP20</h2>
+                <h2>Token Pattern TOP20</h2>
                 <ul>
                   {results.token_patterns.map((item, index) => (
                     <li key={index}>
@@ -77,7 +77,7 @@ function App() {
                 </ul>
               </div>
               <div className="result-column">
-                <h2>構文パターン TOP20</h2>
+                <h2>PhasePattern TOP20</h2>
                 <ul>
                   {results.generalized_patterns.map((item, index) => (
                     <li key={index}>

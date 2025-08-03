@@ -33,14 +33,14 @@ def find_longest_matching_patterns(file_paths, min_pattern_length=2):
                     all_words = all_words + token
                     all_postag = all_postag + pos_tag
         except FileNotFoundError:
-            print(f"エラー: ファイル '{file_path}' が見つかりません。パスを確認してください。")
+            print(f"Error: The file '{file_path}' was not found. Please check the path.")
             continue
         except Exception as e:
-            print(f"ファイル '{file_path}' の読み込み中にエラーが発生しました: {e}")
+            print(f"Error: Failed to load the file '{file_path}'.: {e}")
             continue
 
     if not all_words:
-        print("エラー: 処理できる単語が見つかりませんでした。ファイルが空か、読み込みエラーが発生した可能性があります。")
+        print("Error: No valid words found. The file may be empty or a read error may have occurred.")
         return []
 
     pattern_counts = collections.defaultdict(int)
@@ -89,10 +89,8 @@ def find_longest_matching_patterns(file_paths, min_pattern_length=2):
                 results.append((pattern_str, count))
 
 
-    # ▼▼▼ 修正箇所 ▼▼▼
     # パターンが長い順、次に出現回数が多い順にソート
     results.sort(key=lambda x: (len(x[0].split()), x[1]), reverse=True)
-    # ▲▲▲ 修正箇所 ▲▲▲
 
     return results
 
@@ -109,9 +107,9 @@ if __name__ == "__main__":
     ]
 
     if not file_paths_to_analyze:
-        print("処理するテキストファイルが指定されていません。`file_paths_to_analyze` リストにファイルパスを追加してください。")
+        print("Error: No text files specified for processing. Please add file paths to the `file_paths_to_analyze` list.")
     else:
-        print(f"以下のファイルを分析します: {file_paths_to_analyze}")
+        print(f"Analyzing the following files: {file_paths_to_analyze}")
         longest_patterns = find_longest_matching_patterns(file_paths_to_analyze)
 
         print("\n--- output: longest word token patterns ---")
@@ -119,7 +117,7 @@ if __name__ == "__main__":
             for i, (pattern, count) in enumerate(longest_patterns):
                 print(f"{i+1}. {pattern} (x{count})")
         else:
-            print("一致するパターンは見つかりませんでした。")
+            print("No matching patterns were found.")
 
 # I want to do something.
 # You think that cow want to eat grass.

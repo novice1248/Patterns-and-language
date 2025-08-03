@@ -9,7 +9,7 @@ def scrape_text_from_url(url):
     """
     指定されたURLからHTMLを取得し、主要なテキストコンテンツを抽出する。
     """
-    print(f"URLからテキストを取得中: {url}")
+    print(f"Loading text from URL: {url}")
     try:
         headers = {
             'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36'
@@ -22,10 +22,10 @@ def scrape_text_from_url(url):
         text = ' '.join(soup.stripped_strings)
         return text
     except requests.exceptions.RequestException as e:
-        print(f"エラー: URL '{url}' の取得に失敗しました。 {e}")
+        print(f"Error: Failed to retrieve URL '{url}'. {e}")
         return ""
     except Exception as e:
-        print(f"エラー: URL '{url}' の処理中に予期せぬエラーが発生しました。 {e}")
+        print(f"エラー: An unexpected error occurred while processing URL '{url}'. {e}")
         return ""
 
 def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
@@ -34,9 +34,9 @@ def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
     """
     if not sequence or len(sequence) < min_length:
         return []
-    print(f"シーケンス長 {len(sequence)} でサフィックス配列を構築中...")
+    print(f"Building suffix array for sequence of length {len(sequence)}...")
     suffix_array = sorted(range(len(sequence)), key=lambda i: sequence[i:])
-    print("LCP配列を構築中...")
+    print("Building LCP arrays...")
     lcp_array = [0] * len(sequence)
     for i in range(1, len(sequence)):
         idx1, idx2 = suffix_array[i-1], suffix_array[i]
@@ -46,7 +46,7 @@ def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
                sequence[idx1 + lcp] == sequence[idx2 + lcp]):
             lcp += 1
         lcp_array[i] = lcp
-    print("繰り返しパターンを抽出中...")
+    print("Extracting repeated patterns...")
     repeated_patterns = collections.defaultdict(int)
     for i in range(1, len(lcp_array)):
         lcp = lcp_array[i]
@@ -60,7 +60,7 @@ def _find_longest_patterns_generic(sequence, min_length, examples_map=None):
             else:
                 break
         repeated_patterns[pattern] = max(repeated_patterns.get(pattern, 0), count)
-    print("最長パターンをフィルタリング中...")
+    print("Filtering longest patterns...")
     final_patterns = {}
     joiner = " "
     sorted_patterns = sorted(repeated_patterns.items(), key=lambda item: len(item[0]), reverse=True)
@@ -86,7 +86,7 @@ def find_longest_token_patterns(urls, min_pattern_length=2):
     """
     複数のURLからテキストをスクレイピングし、最長一致する「トークン（単語）」パターンを抽出します。
     """
-    print("\n--- トークン（単語）パターンの分析を開始 ---")
+    print("\n--- Starting analysis of Token patterns ---")
     all_words = []
     for url in urls:
         text = scrape_text_from_url(url)
@@ -99,12 +99,12 @@ def find_longest_generalized_patterns(urls, min_pattern_length=3):
     """
     複数のURLからテキストをスクレイピングし、spaCyで一般化して最長の構文パターンを抽出します。
     """
-    print("\n--- 一般化（名詞句/動詞句 + 品詞）パターンの分析を開始 ---")
+    print("\n--- Starting analysis of noun/verb phrases + words patterns ---")
     try:
         nlp = spacy.load("en_core_web_sm", disable=["ner"])
     except OSError:
-        print("エラー: spaCyのモデル 'en_core_web_sm' が見つかりません。")
-        print("コマンド: `python -m spacy download en_core_web_sm` を実行してください。")
+        print("Error: spaCy's model 'en_core_web_sm' is not found.")
+        print("Command: Please run `python -m spacy download en_core_web_sm`")
         return []
 
     texts_to_process = []
@@ -114,10 +114,10 @@ def find_longest_generalized_patterns(urls, min_pattern_length=3):
             texts_to_process.append(scraped_text)
 
     if not texts_to_process:
-        print("URLからテキストを抽出できませんでした。処理を終了します。")
+        print("Failed to extract text from the URL. Stopping the process.")
         return []
 
-    print("spaCyによる言語解析を実行中... (テキストが長いと時間がかかります)")
+    print("Performing language analysis with spaCy... (Processing may take longer for large texts)")
     doc_tokens_generalized = []
 
     for doc in nlp.pipe(texts_to_process):
@@ -162,14 +162,14 @@ def find_longest_generalized_patterns(urls, min_pattern_length=3):
             if len(examples_map[pattern_gen]) < 5:
                 examples_map[pattern_gen].append(pattern_text)
 
-    print(f"一般化シーケンス長 {len(generalized_sequence)} でパターンを分析します。")
+    print(f"Analyzing patterns with generalized sequence length {len(generalized_sequence)}.")
     return _find_longest_patterns_generic(generalized_sequence, min_pattern_length, examples_map)
 
 
 if __name__ == "__main__":
     urls_to_analyze = []
-    print("分析したいウェブページのURLを1行ずつ入力してください。")
-    print("入力を終えるには、何も入力せずにEnterキーを押してください。")
+    print("Please enter the URLs of the web pages you want to analyze, one per line.")
+    print("To finish input, press Enter without typing anything.")
 
     while True:
         url = input(f"URL {len(urls_to_analyze) + 1}: ")
@@ -178,9 +178,9 @@ if __name__ == "__main__":
         urls_to_analyze.append(url)
 
     if not urls_to_analyze:
-        print("処理するURLが入力されませんでした。プログラムを終了します。")
+        print("Don't input URL. Stopping the process")
     else:
-        print(f"\n以下の{len(urls_to_analyze)}件のURLを分析します:")
+        print(f"\nAnalyzing the following {len(urls_to_analyze)} URLs:")
         for u in urls_to_analyze:
             print(f"- {u}")
 
@@ -190,7 +190,7 @@ if __name__ == "__main__":
             for i, (pattern, count, _) in enumerate(token_patterns[:20]):
                 print(f"{i+1}. '{pattern}' (x{count})")
         else:
-            print("一致するトークンパターンは見つかりませんでした。")
+            print("No matching Token patterns were found.")
         print("-" * 40)
 
         generalized_patterns = find_longest_generalized_patterns(urls_to_analyze, min_pattern_length=3)
@@ -201,5 +201,5 @@ if __name__ == "__main__":
                 if example:
                     print(f"   └ ex: \"{example}\"")
         else:
-            print("一致する一般化パターンは見つかりませんでした。")
+            print("No matching patterns were found.")
         print("-" * 40)
